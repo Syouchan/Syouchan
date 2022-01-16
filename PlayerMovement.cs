@@ -1,5 +1,5 @@
 ﻿//作成日忘れた
-//作成者　田中祥太郎　浅野龍太郎
+//作成者　田中祥太郎
 //スクリプト概要
 //WASDで移動できる。speedは2f。
 //左シフトを押しながらWASDのどれかを押すとspeedが7fの状態で動ける。
@@ -18,8 +18,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
+//ここにコインの種類を記入　01/07追記
+
 public class PlayerMovement : MonoBehaviour
 {
+
     public CharacterController controller;
     public float speed = 3f;//走る速度
     public float gravity = -9.81f;
@@ -44,10 +47,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject[] itemobject;
     [SerializeField] GameObject Slider;
     [SerializeField] GameObject text;
-
-
-    //public GameObject SubCamera;
-
 
     void Start()
     {
@@ -101,13 +100,10 @@ public class PlayerMovement : MonoBehaviour
             if (PlayerScript.sutamina >= 0.8)
             {
                 speed = 5f;
-                
-                //Slider.GetComponent<Image>().color = new Color(53, 255, 0, 255);
             }
             else
             {
                 speed = 7f;
-                //Slider.GetComponent<Image>().color = new Color(0, 255, 0, 255);
             }
         }
         else
@@ -118,7 +114,6 @@ public class PlayerMovement : MonoBehaviour
     (Input.GetKey(KeyCode.LeftControl) && (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))) && sutamina_hantei() == false || (Input.GetKey(KeyCode.LeftControl) &&
     (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))) && sutamina_hantei() == false && ShiftArrowFlag))
         {
-            //CharacterController Height =1f;
             speed = 1f;
             ShiftArrowFlag = false;
         }
@@ -161,108 +156,6 @@ public class PlayerMovement : MonoBehaviour
             sutaminazero = false;
             ShiftArrowFlag = true;//Shiftを押下可能にする
         }
-     
         return false;
     }
-    //public void itemget(GameObject[] itemobj = null)
-    //{
-
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        //Player_ray = Camera.main.ScreenPointToRay(Input.mousePosition);//new Ray(transform.position,transform.TransformDirection(Vector3.forward));
-
-    //        //RaycastHit hit;
-
-    //        //Debug.DrawLine (Player_ray.origin, Player_ray.direction * 10, Color.red);
-
-    //        //クリックした場所からRayを飛ばす
-    //        if (Physics.Raycast(Player_ray, out hit, 4))
-    //        {
-
-    //            //当たったオブジェクトのタグがitemだったときの処理
-    //            if (hit.collider.tag == "item")
-    //            {
-    //                //Debug.DrawLine(Player_ray.origin, Player_ray.direction * 10, Color.red);
-    //                text.SetActive(true);
-    //                int item_id = hit.collider.GetComponent<item_admin>().item_id;
-    //                //Debug.Log(hit.collider.gameObject.name);
-
-                    
-    //                itemobj[item_id].SetActive(true);//アイテムオブジェクトをアクティブにする
-    //                item_count += 1;
-
-    //                //拾ったアイテムが鍵アイテムだった時の処理
-    //                if(item_id==1)
-    //                {
-    //                    key_item -= 1;//必要な残りキーアイテムの総数を減らす
-    //                    if (key_item<=0)
-    //                    {
-    //                        GoalFlag = true;
-    //                    }
-    //                }
-
-
-    //                Destroy(hit.collider.gameObject);
-    //                //new LeverSwitchesController().OnPushTrue(hit.collider.gameObject.name);
-    //            }
-
-    //            //当たったオブジェクトのタグがgoalだった時の処理
-    //            if (hit.collider.tag == "goal")
-    //            {
-                    
-    //                if (GoalFlag == false)
-    //                {
-    //                    Debug.Log("ゴールに必要なアイテムが不足しています");
-    //                }
-    //                else
-    //                {
-    //                    SceneManager.LoadScene("Clear_Scene");
-    //                }
-    //            }
-    //            if(hit.collider.tag == "Gate")
-    //            {
-    //                text.SetActive(true);
-    //            }
-    //            else
-    //            {
-    //                text.SetActive(false);
-    //            }
-    //        }
-    //    }
-    //    Player_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //}
-    //足音を鳴らす
-    //void ashioto()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W))
-    //    {
-    //        aud.Play();
-    //    }
-
-    //    else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W))
-    //    {
-    //        aud.Stop();
-    //    }
-    //}
-
-
-
-
-
-    //void runashioto()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.W) ||
-    //        Input.GetKeyDown(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.A) ||
-    //        Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W))
-    //    {
-    //        runaud.Play();
-    //    }
-
-    //    else if (Input.GetKeyUp(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.W) ||
-    //        Input.GetKeyUp(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.W) && Input.GetKeyUp(KeyCode.A) ||
-    //        Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W))
-    //    {
-    //        runaud.Stop();
-    //    }
-    //}
 }
